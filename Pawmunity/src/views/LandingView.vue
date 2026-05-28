@@ -7,16 +7,16 @@ const router = useRouter()
 
 <template>
 
-  <!-- Conteneur principal qui prend tout l'écran -->
+
   <div class="min-h-screen bg-[#F5F1EB] flex flex-col">
 
-    <!-- Bannière logo en haut -->
+
     <Banner />
 
-    <!-- Contenu centré qui prend l'espace restant -->
-    <div class="flex-1 flex flex-col items-center justify-center px-6">
 
-      <!-- Illustration chien + chat -->
+    <div class="flex-1 flex flex-col items-center justify-center px-3">
+
+
       <img
         src="../assets/LogoApp.png"
         alt="Illustration Pawmunity"
@@ -30,7 +30,7 @@ const router = useRouter()
         de vos animaux ensemble.
       </p>
 
-      <!-- Bouton Créer un compte -->
+      <!-- Créer un compte -->
       <button
         @click=""
         class="w-full bg-[#2C4A6E] text-white font-semibold py-4 rounded-full mb-4 text-base"
@@ -41,14 +41,17 @@ const router = useRouter()
 
       <p class="text-black font-medium mb-4">Ou</p>
 
-      <!-- Bouton Connexion -->
+      <!-- Connexion -->
       <button
         @click="router.push('/login')"
-        class="w-full border-2 border-[#2C4A6E] text-black font-semibold py-4 rounded-full text-base"
+        class="w-full border-2 border-[#2C4A6E] text-black font-semibold py-4 rounded-full text-base
+       shadow-[0_4px_10px_rgba(44,74,110,0.4)] hover:shadow-[0_6px_16px_rgba(44,74,110,0.5)]
+       active:shadow-none transition-shadow duration-150"
       >
         Connexion
       </button>
 
     </div>
   </div>
+
 </template>
