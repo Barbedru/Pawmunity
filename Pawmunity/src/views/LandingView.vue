@@ -25,9 +25,9 @@ const router = useRouter()
 
       <!-- Texte de présentation -->
       <p class="text-center text-[#2C4A6E] text-base leading-relaxed mb-10">
-        Connecte les familles de ta<br>
-        communauté pour prendre soin<br>
-        de vos animaux ensemble.
+        Connecte les familles <br>
+        de ta communauté pour prendre soin<br>
+        de vos animaux ensemble
       </p>
 
       <!-- Créer un compte -->
