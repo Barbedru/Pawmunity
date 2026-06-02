@@ -1,6 +1,5 @@
 🐾 Application Web de garde d’animaux communautaire
 
-lien test mobile : https://elusive-flatterer-shelf.ngrok-free.dev
 
 🎯 Concept général
 
