@@ -4,9 +4,9 @@ import LandingView from "@/views/LandingView.vue";
 import LoginView from '../views/LoginView.vue'
 import HomeView from '../views/HomeView.vue'
 import CalendarView from '../views/CalendarView.vue'
-import ProfileView from '../views/ProfileView.vue'
-import FicheAnimalView from '../views/FicheAnimalView.vue'
-import FormulaireDemande from "../components/FormulaireDemande.vue";
+import ProfilView from '../views/ProfilView.vue'
+import AnimalCardView from '../views/AnimalCardView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,12 +34,12 @@ const router = createRouter({
     {
       path: '/profile',
       name: 'profile',
-      component: ProfileView
+      component: ProfilView
     },
     {
       path: '/animal/:id',
       name: 'fiche-animal',
-      component: FicheAnimalView
+      component: AnimalCardView
     }
   ]
 })
