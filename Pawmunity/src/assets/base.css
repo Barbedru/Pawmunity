@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
+  --vt-c-blue: #2C4A6E;
+  --vt-c-orange: #FF7A4D;
   --vt-c-white-mute: #f2f2f2;
 }
 
