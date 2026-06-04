@@ -33,7 +33,7 @@ const router = useRouter()
       <!-- Créer un compte -->
       <button
         @click=""
-        class="w-full bg-[#2C4A6E] text-white font-semibold py-4 rounded-full mb-4 text-base"
+        class="w-[280px] mx-auto h-[62px] bg-[#2C4A6E] text-white font-semibold rounded-full mb-4 text-xl"
       >
         Créer un compte
       </button>
@@ -44,7 +44,7 @@ const router = useRouter()
       <!-- Connexion -->
       <button
         @click="router.push('/login')"
-        class="w-full border-2 border-[#2C4A6E] text-black font-semibold py-4 rounded-full text-base
+        class="w-[280px] mx-auto h-[62px] border-2 border-[#2C4A6E] text-black font-semibold rounded-full text-xl
        shadow-[0_4px_10px_rgba(44,74,110,0.4)] hover:shadow-[0_6px_16px_rgba(44,74,110,0.5)]
        active:shadow-none transition-shadow duration-150"
       >
