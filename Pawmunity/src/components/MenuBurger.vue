@@ -50,21 +50,21 @@ const navigate = (path) => {
     <!-- Liens de navigation -->
     <button
       @click="navigate('/home')"
-      class="w-full bg-gray-100 rounded-full py-3 text-black font-semibold text-lg"
+      class="w-full bg-gray-100 rounded-full py-3 text-black font-semibold text-lg shadow-[0_4px_10px_rgba(44,74,110,0.4)]"
     >
       Accueil
     </button>
 
     <button
-      @click="navigate('/calendrier')"
-      class="w-full bg-gray-100 rounded-full py-3 text-black font-semibold text-lg"
+      @click="navigate('/calendar')"
+      class="w-full bg-gray-100 rounded-full py-3 text-black font-semibold text-lg shadow-[0_4px_10px_rgba(44,74,110,0.4)]"
     >
       Calendrier
     </button>
 
     <button
       @click="navigate('/profil')"
-      class="w-full bg-gray-100 rounded-full py-3 text-black font-semibold text-lg"
+      class="w-full bg-gray-100 rounded-full py-3 text-black font-semibold text-lg shadow-[0_4px_10px_rgba(44,74,110,0.4)]"
     >
       Profil
     </button>
