@@ -3,7 +3,7 @@
 import Banner from "../components/Banner.vue";
 import MenuBurger from "@/components/MenuBurger.vue";
 import { computed } from 'vue'
-import { useDemandesStore } from '../stores/demandes.js'
+import { useDemandesStore } from '../stores/cal_request.js'
 
 const store = useDemandesStore()
 

@@ -5,7 +5,7 @@ import Banner from '../components/Banner.vue'
 import MenuBurger from '../components/MenuBurger.vue'
 import Card from '../components/Card.vue'
 import FormApp from '../components/FormApp.vue'
-import { useDemandesStore } from '../stores/demandes.js'
+import { useDemandesStore } from '../stores/cal_request.js'
 
 const store = useDemandesStore()
 const filtreActif = ref('toutes')
@@ -35,7 +35,7 @@ const afficherFormulaire = ref(false)
       :class="filtreActif === 'toutes' ? 'shadow-[0_4px_10px_rgba(44,74,110,0.4)]' : ''"
       class="w-[280px] mx-auto h-[62px] mx-auto bg-[#2C4A6E] text-white font-bold h-15.5 rounded-full mb-4 text-xl"
     >
-      Toutes les demandes
+      Toutes les request
     </button>
 
     <button
