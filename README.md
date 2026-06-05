@@ -32,7 +32,7 @@ Elle répond à deux besoins :
 • Description / consignes 
 👉 La demande est visible par toute la communauté
 
-🙋 4. Réponse aux demandes 
+🙋 4. Réponse aux request 
 • Les autres familles peuvent proposer leur aide 
 • Plusieurs familles peuvent répondre à une même demande 
 👉 Validation finale : 
@@ -41,11 +41,11 @@ Elle répond à deux besoins :
 
 🔔 5. Système de notifications 
 • Alerte lors d’une nouvelle demande 
-• Mise en avant des demandes urgentes 
+• Mise en avant des request urgentes 
 • Notifications visuelles dans l’application 
 👉 Permet une réactivité rapide, surtout en cas d’urgence
 
-📊 6. Statut des demandes Chaque demande possède un statut : 
+📊 6. Statut des request Chaque demande possède un statut : 
 • Ouverte (en attente de réponse) 
 • En cours (gardien sélectionné) 
 • Terminée 
@@ -57,7 +57,7 @@ Elle répond à deux besoins :
 • Meilleure organisation collective
 
 🆘 8. Mode urgence 
-• Mise en avant des demandes urgentes 
+• Mise en avant des request urgentes 
 • Visibilité prioritaire dans l’interface 
 • Accès rapide (bouton dédié) 
 👉 Idéal pour les situations imprévues
