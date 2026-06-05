@@ -6,6 +6,8 @@ import { profils } from "../data/profils.js";
 import Banner from '@/components/Banner.vue'
 import ProfilBanner from '@/components/ProfilBanner.vue'
 import MenuBurger from '@/components/MenuBurger.vue'
+import AnimalCard from '@/components/AnimalCard.vue'
+import { animaux } from '@/data/animaux.js'
 
 const profil =ref(profils[0])
 </script>
@@ -19,10 +21,9 @@ const profil =ref(profils[0])
       :nom="profil.nom"
     />
 
-    <!--Liste animaux-->
 
     <div>
-      <p class="font-light text-black text-[40px] text-center py-10 ">
+      <p class="font-light text-[#2C4A6E] text-[40px] text-center py-10 ">
         Mes animaux </p>
     </div>
 
@@ -32,6 +33,47 @@ const profil =ref(profils[0])
       + Ajouter
     </button>
 
+    <!--Liste animaux-->
+
+    <AnimalCard
+      v-for="animal in animaux"
+      :key="animal.id"
+      :nom="animal.nom"
+      :type="animal.type"
+      :age="animal.age"
+      :emoji="animal.emoji"
+    />
+
+    <!--Historique-->
+
+    <div>
+      <p class="font-light text-[#2C4A6E] text-[40px] text-center py-10 ">
+        Historique des Gardes </p>
+    </div>
+
+    <div class="w-[346px] mx-auto h-[112px] bg-white rounded-2xl p-4 mb-4 flex items-center justify-between">
+
+      <div>
+        <p class="font-light text-black text-[24px] "> Murphy</p>
+        <p class="font-light text-black text-[15px] "> Famille Hoareau</p>
+        <p class="font-light text-black text-[15px] "> 15-20 Février</p>
+      </div>
+
+    </div>
+
+    <div class="w-[346px] mx-auto h-[112px] bg-white rounded-2xl p-4 mb-4 flex items-center justify-between">
+
+      <div>
+        <p class="font-light text-black text-[24px] "> Odin & Einar </p>
+        <p class="font-light text-black text-[15px] "> Famille Miquet </p>
+        <p class="font-light text-black text-[15px] "> 04-11 Avril </p>
+      </div>
+
+    </div>
+
+    <div>
+
+    </div>
 
   </div>
 
