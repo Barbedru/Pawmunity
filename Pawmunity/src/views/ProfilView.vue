@@ -19,6 +19,20 @@ const profil =ref(profils[0])
       :nom="profil.nom"
     />
 
+    <!--Liste animaux-->
+
+    <div>
+      <p class="font-light text-black text-[40px] text-center py-10 ">
+        Mes animaux </p>
+    </div>
+
+    <button
+      @click=""
+      class="text-[#FF7A4D] font-bold h-15.5  mb-4 text-2xl drop-shadow-lg active:shadow-none transition-shadow duration-150">
+      + Ajouter
+    </button>
+
+
   </div>
 
 </template>
