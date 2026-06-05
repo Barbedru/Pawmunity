@@ -33,7 +33,7 @@ const afficherFormulaire = ref(false)
     <button
       @click="filtreActif = 'toutes'"
       :class="filtreActif === 'toutes' ? 'shadow-[0_4px_10px_rgba(44,74,110,0.4)]' : ''"
-      class="w-[280px] mx-auto h-[62px] mx-auto bg-[#2C4A6E] text-white font-bold h-15.5 rounded-full mb-4 text-xl"
+      class="w-[280px] mx-auto h-[62px]  bg-[#2C4A6E] text-white font-bold h-15.5 rounded-full mb-4 text-xl"
     >
       Toutes les request
     </button>
