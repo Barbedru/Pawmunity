@@ -2,20 +2,25 @@
 
 import Banner from "../components/Banner.vue";
 import MenuBurger from "@/components/MenuBurger.vue";
-import { ref } from 'vue'
+import { computed } from 'vue'
+import { useDemandesStore } from '../stores/demandes.js'
 
-const gardes = ref([
-  {
-    key: 'garde1',
-    highlight: { color: 'orange', fillMode: 'solid' },
-    dates: new Date(2026, 5, 15), // 15 juin 2026
-  },
-  {
-    key: 'garde2',
-    highlight: { fillMode: 'solid', style : { background : '#2C4A6E' } },
-    dates: new Date(2026, 5, 22), // 22 juin 2026
-  }
-])
+const store = useDemandesStore()
+
+const gardes = computed(() =>
+  store.demandes
+    .filter(d => d.dateDebut)
+    .map(d => ({
+      key: `garde-${d.id}`,
+      highlight: d.urgent
+        ? { color: 'orange', fillMode: 'solid' }
+        : { fillMode: 'solid', style: { background: '#2C4A6E' } },
+      dates: d.dateFin && d.dateFin !== d.dateDebut
+        ? { start: new Date(d.dateDebut), end: new Date(d.dateFin) }
+        : new Date(d.dateDebut),
+      popover: { label: d.nom }
+    }))
+)
 
 </script>
 

@@ -1,27 +1,23 @@
 <script setup>
 
 import { ref, computed } from 'vue'
-import { demandes as demandesData } from '../data/demandes.js'
 import Banner from '../components/Banner.vue'
 import MenuBurger from '../components/MenuBurger.vue'
 import Card from '../components/Card.vue'
 import FormApp from '../components/FormApp.vue'
+import { useDemandesStore } from '../stores/demandes.js'
 
+const store = useDemandesStore()
 const filtreActif = ref('toutes')
 
 const demandesFiltrees = computed(() => {
   if (filtreActif.value === 'urgentes') {
-    return demandes.value.filter(d => d.urgent === true)
+    return store.demandes.filter(d => d.urgent === true)
   }
-  return demandes.value
+  return store.demandes
 })
 
-const demandes = ref(demandesData)
 const afficherFormulaire = ref(false)
-
-const ajouterDemande = (nouvelleDemande) => {
-  demandes.value.push(nouvelleDemande)
-}
 
 </script>
 
@@ -74,7 +70,7 @@ const ajouterDemande = (nouvelleDemande) => {
   <FormApp
     v-if="afficherFormulaire"
     @fermer="afficherFormulaire = false"
-    @ajouterDemande="ajouterDemande"
+    @ajouterDemande="store.ajouterDemande"
   />
 
   </div>

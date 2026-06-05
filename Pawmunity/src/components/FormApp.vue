@@ -35,11 +35,13 @@ const envoyerDemande= () => {
     .join(' & ')
 
   const nouvelleDemande = {
-    id: Date.now(),   //génère un identifiant unique basé sur l'horodatage pour éviter les doublons
+    id: Date.now(),
     nom: noms,
     famille: "Famille Druval",
     description: description.value,
     date: `${formaterDate(dateDebut.value)} - ${formaterDate(dateFin.value)}`,
+    dateDebut: dateDebut.value,
+    dateFin: dateFin.value || dateDebut.value,
     lieu: lieuGarde.value === 'proprietaire',
     reponses: 0,
     urgent: urgenceSelection.value === 'urgent'
