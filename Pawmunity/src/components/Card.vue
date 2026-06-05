@@ -63,7 +63,7 @@ const initiales = computed(() => {
         <span>{{ date }}</span>
       </div>
       <span class="text-gray-400 text-sm">
-    {{ lieu ? '🏠 Chez le gardien' : '🏡 Chez le propriétaire' }}
+    {{ lieu ?  '🏡 Chez le propriétaire' : '🏠 Chez le gardien' }}
   </span>
       <span class="text-[#4CAF50] text-sm font-semibold">{{ reponses }} réponses</span>
     </div>
