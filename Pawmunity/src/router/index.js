@@ -32,8 +32,8 @@ const router = createRouter({
       component: CalendarView
     },
     {
-      path: '/profile',
-      name: 'profile',
+      path: '/profil',
+      name: 'profil',
       component: ProfilView
     },
     {
