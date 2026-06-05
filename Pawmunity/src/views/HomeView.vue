@@ -49,8 +49,7 @@ const afficherFormulaire = ref(false)
     <button
       @click="afficherFormulaire = true"
       class="w-[280px] mx-auto h-[62px] mx-auto bg-[#FF7A4D] text-white font-bold h-15.5 rounded-xl mb-4 text-2xl shadow-[0_4px_10px_rgba(44,74,110,0.4)] hover:shadow-[0_6px_16px_rgba(44,74,110,0.5)]
-       active:shadow-none transition-shadow duration-150"
-    >
+       active:shadow-none transition-shadow duration-150">
       + Nouvelle demande
     </button>
 
