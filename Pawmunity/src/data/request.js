@@ -1,6 +1,6 @@
 
 
-export const demandes = [
+export const request = [
   {
     id: 1,
     nom: "Murphy",
