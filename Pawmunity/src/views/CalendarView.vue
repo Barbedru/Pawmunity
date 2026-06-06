@@ -3,22 +3,22 @@
 import Banner from "../components/Banner.vue";
 import MenuBurger from "@/components/MenuBurger.vue";
 import { computed } from 'vue'
-import { useDemandesStore } from '../stores/cal_request.js'
+import { useRequestsStore } from '../stores/requests.js'
 
-const store = useDemandesStore()
+const store = useRequestsStore()
 
-const gardes = computed(() =>
-  store.demandes
-    .filter(d => d.dateDebut)
-    .map(d => ({
-      key: `garde-${d.id}`,
-      highlight: d.urgent
+const stays = computed(() =>
+  store.requests
+    .filter(r => r.startDate)
+    .map(r => ({
+      key: `stay-${r.id}`,
+      highlight: r.urgent
         ? { color: 'orange', fillMode: 'solid' }
         : { fillMode: 'solid', style: { background: '#2C4A6E' } },
-      dates: d.dateFin && d.dateFin !== d.dateDebut
-        ? { start: new Date(d.dateDebut), end: new Date(d.dateFin) }
-        : new Date(d.dateDebut),
-      popover: { label: d.nom }
+      dates: r.endDate && r.endDate !== r.startDate
+        ? { start: new Date(r.startDate), end: new Date(r.endDate) }
+        : new Date(r.startDate),
+      popover: { label: r.name }
     }))
 )
 
@@ -34,7 +34,7 @@ const gardes = computed(() =>
     </p>
 
     <div class="w-[90%] mx-auto bg-white rounded-2xl p-4">
-      <VCalendar :attributes="gardes" expanded />
+      <VCalendar :attributes="stays" expanded />
     </div>
 
     <!-- LÉGENDE -->

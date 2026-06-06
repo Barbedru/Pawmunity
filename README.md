@@ -1,9 +1,9 @@
-🐾 Application Web de garde d’animaux communautaire
+🐾 Application Web de garde d’animals communautaire
 
 
 🎯 Concept général
 
-Application web privée destinée à une communauté de familles vivant ensemble (ex : caserne de gendarmerie), permettant d’organiser simplement et rapidement la garde d’animaux entre membres de confiance.
+Application web privée destinée à une communauté de familles vivant ensemble (ex : caserne de gendarmerie), permettant d’organiser simplement et rapidement la garde d’animals entre membres de confiance.
 Elle répond à deux besoins : 
 • anticiper les absences (vacances, week-ends) 
 • gérer les urgences (départ imprévu, contrainte professionnelle)
@@ -15,7 +15,7 @@ Elle répond à deux besoins :
 • Chaque compte représente une famille 
 • Accès à toutes les fonctionnalités de la plateforme
 
-🐾 2. Fiches animaux Chaque famille peut enregistrer ses animaux avec : 
+🐾 2. Fiches animals Chaque famille peut enregistrer ses animals avec : 
 •Nom 
 •Type (chien, chat, etc.) 
 •Âge •Caractère 

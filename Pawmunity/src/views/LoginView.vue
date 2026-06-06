@@ -23,22 +23,22 @@ const router = useRouter()
       <div class="w-full flex flex-col gap-4">
 
         <!-- Email -->
-        <div class="flex flex-col gap-1">
-          <label class="text-[#2C4A6E] font-semibold px-18 text-sm">Email</label>
+        <div class="w-[280px] mx-auto flex flex-col gap-1">
+          <label class="text-[#2C4A6E] font-semibold text-sm">Email</label>
           <input
             type="email"
             placeholder="email.exemple@mail.fr"
-            class="w-[280px] mx-auto h-[62px] bg-white border border-gray-300 rounded-full px-5 text-gray-400 text-sm focus:outline-none focus:border-[#2C4A6E]"
+            class="w-full h-[62px] bg-white border border-gray-300 rounded-full px-5 text-gray-400 text-sm focus:outline-none focus:border-[#2C4A6E]"
           />
         </div>
 
         <!-- Mot de passe -->
-        <div class="flex flex-col gap-1">
-          <label class="text-[#2C4A6E] font-semibold px-18 text-sm">Mot de passe</label>
+        <div class="w-[280px] mx-auto flex flex-col gap-1">
+          <label class="text-[#2C4A6E] font-semibold text-sm">Mot de passe</label>
           <input
             type="password"
             placeholder="••••••••••••••"
-            class="w-[280px] mx-auto h-[62px] bg-white border border-gray-300 rounded-full px-5 text-gray-400 text-sm focus:outline-none focus:border-[#2C4A6E]"
+            class="w-full h-[62px] bg-white border border-gray-300 rounded-full px-5 text-gray-400 text-sm focus:outline-none focus:border-[#2C4A6E]"
           />
         </div>
 

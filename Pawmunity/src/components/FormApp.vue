@@ -1,54 +1,54 @@
 <script setup>
 import { ref } from 'vue'
-import { animaux } from '../data/animaux.js'
+import { animals } from '../data/animals.js'
 
-const emit = defineEmits(['fermer', 'ajouterDemande'])
+const emit = defineEmits(['close', 'addRequest'])
 
-const animalSelection = ref([])
+const selectedAnimals = ref([])
 
 const toggleAnimal = (id) => {
-  if (animalSelection.value.includes(id)) {
-    animalSelection.value = animalSelection.value.filter(a => a !== id)
+  if (selectedAnimals.value.includes(id)) {
+    selectedAnimals.value = selectedAnimals.value.filter(a => a !== id)
   } else {
-    animalSelection.value.push(id)
+    selectedAnimals.value.push(id)
   }
 }
 
-const dateDebut = ref(null)
-const dateFin = ref(null)
-const lieuGarde = ref('proprietaire')
+const startDate = ref(null)
+const endDate = ref(null)
+const location = ref('owner')
 
-const etape = ref(1)
+const step = ref(1)
 
-const urgenceSelection = ref('normal')
+const urgencyLevel = ref('normal')
 const description = ref('')
 
-const formaterDate = (dateStr) => {
+const formatDate = (dateStr) => {
   if (!dateStr) return ''
   const date = new Date(dateStr)
   return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })
 }
 
-const envoyerDemande= () => {
-  const noms = animalSelection.value
-    .map(id => animaux.find(a => a.id === id)?.nom)
+const submitRequest = () => {
+  const names = selectedAnimals.value
+    .map(id => animals.find(a => a.id === id)?.name)
     .join(' & ')
 
-  const nouvelleDemande = {
+  const newRequest = {
     id: Date.now(),
-    nom: noms,
-    famille: "Famille Druval",
+    name: names,
+    family: "Famille Druval",
     description: description.value,
-    date: `${formaterDate(dateDebut.value)} - ${formaterDate(dateFin.value)}`,
-    dateDebut: dateDebut.value,
-    dateFin: dateFin.value || dateDebut.value,
-    lieu: lieuGarde.value === 'proprietaire',
-    reponses: 0,
-    urgent: urgenceSelection.value === 'urgent'
+    date: `${formatDate(startDate.value)} - ${formatDate(endDate.value)}`,
+    startDate: startDate.value,
+    endDate: endDate.value || startDate.value,
+    location: location.value === 'owner',
+    responses: 0,
+    urgent: urgencyLevel.value === 'urgent'
   }
 
-  emit('ajouterDemande', nouvelleDemande)
-  emit('fermer')
+  emit('addRequest', newRequest)
+  emit('close')
 }
 
 
@@ -59,14 +59,14 @@ const envoyerDemande= () => {
 <template>
 
   <div class="fixed inset-0 bg-black/50 flex items-end justify-center z-50"
-       @click.self="emit('fermer')">
+       @click.self="emit('close')">
 
     <div class="bg-[#F5F1EB] w-full rounded-t-3xl p-6 max-h-[90vh] overflow-y-auto">
 
       <!-- HEADER commun -->
       <div class="flex items-center justify-between mb-6">
         <h2 class="text-[#2C4A6E] font-bold text-xl">Nouvelle demande</h2>
-        <button @click="emit('fermer')" class="text-gray-400 text-2xl">✕</button>
+        <button @click="emit('close')" class="text-gray-400 text-2xl">✕</button>
       </div>
 
       <!-- BARRE DE PROGRESSION -->
@@ -74,40 +74,40 @@ const envoyerDemande= () => {
 
         <!-- Étape 1 -->
         <div class="flex flex-col items-center flex-1">
-    <span :class="etape >= 1 ? 'text-[#E8724A]' : 'text-gray-300'"
+    <span :class="step >= 1 ? 'text-[#E8724A]' : 'text-gray-300'"
           class="text-sm font-semibold mb-1">Animal & Dates</span>
-          <div :class="etape >= 1 ? 'bg-[#E8724A]' : 'bg-gray-200'"
+          <div :class="step >= 1 ? 'bg-[#E8724A]' : 'bg-gray-200'"
                class="h-1 w-full rounded-full"></div>
         </div>
 
         <!-- Étape 2 -->
         <div class="flex flex-col items-center flex-1">
-    <span :class="etape === 2 ? 'text-[#E8724A]' : 'text-gray-300'"
+    <span :class="step === 2 ? 'text-[#E8724A]' : 'text-gray-300'"
           class="text-sm font-semibold mb-1">Détails</span>
-          <div :class="etape === 2 ? 'bg-[#E8724A]' : 'bg-gray-200'"
+          <div :class="step === 2 ? 'bg-[#E8724A]' : 'bg-gray-200'"
                class="h-1 w-full rounded-full"></div>
         </div>
 
       </div>
 
       <!-- PAGE 1 -->
-      <div v-if="etape === 1">
+      <div v-if="step === 1">
 
         <!-- ANIMAL CONCERNÉ -->
         <div class="mb-6">
           <p class="text-[#2C4A6E] font-semibold mb-3">Animal concerné</p>
           <div
-            v-for="animal in animaux"
+            v-for="animal in animals"
             :key="animal.id"
             @click="toggleAnimal(animal.id)"
-            :class="animalSelection.includes(animal.id) ? 'border-2 border-[#E8724A]' : 'border-2 border-transparent'"
+            :class="selectedAnimals.includes(animal.id) ? 'border-2 border-[#E8724A]' : 'border-2 border-transparent'"
             class="bg-white rounded-2xl p-4 mb-3 flex items-center gap-4 cursor-pointer"
           >
             <div class="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center font-bold text-white">
-              {{ animal.nom[0] }}
+              {{ animal.name[0] }}
             </div>
             <div>
-              <p class="font-bold text-[#2C4A6E]">{{ animal.nom }}</p>
+              <p class="font-bold text-[#2C4A6E]">{{ animal.name }}</p>
               <p class="text-sm text-gray-400">{{ animal.type }}, {{ animal.age }} ans</p>
             </div>
           </div>
@@ -122,7 +122,7 @@ const envoyerDemande= () => {
               <span class="text-gray-300">📅</span>
               <input
                 type="date"
-                v-model="dateDebut"
+                v-model="startDate"
                 class="w-full bg-transparent text-[#2C4A6E] outline-none"
               />
             </div>
@@ -133,7 +133,7 @@ const envoyerDemande= () => {
               <span class="text-gray-300">📅</span>
               <input
                 type="date"
-                v-model="dateFin"
+                v-model="endDate"
                 class="w-full bg-transparent text-[#2C4A6E] outline-none"
               />
             </div>
@@ -144,11 +144,11 @@ const envoyerDemande= () => {
         <div class="mb-6">
           <p class="text-[#2C4A6E] font-semibold mb-3">Lieu de garde</p>
           <div
-            @click="lieuGarde = 'proprietaire'"
-            :class="lieuGarde === 'proprietaire' ? 'border-2 border-[#E8724A]' : 'border-2 border-transparent'"
+            @click="location = 'owner'"
+            :class="location === 'owner' ? 'border-2 border-[#E8724A]' : 'border-2 border-transparent'"
             class="bg-white rounded-2xl p-4 mb-3 flex items-center gap-4 cursor-pointer"
           >
-            <div :class="lieuGarde === 'proprietaire' ? 'bg-[#E8724A]' : 'bg-gray-200'"
+            <div :class="location === 'owner' ? 'bg-[#E8724A]' : 'bg-gray-200'"
                  class="w-5 h-5 rounded-full"></div>
             <div>
               <p class="font-bold text-[#2C4A6E]">Chez le propriétaire</p>
@@ -156,11 +156,11 @@ const envoyerDemande= () => {
             </div>
           </div>
           <div
-            @click="lieuGarde = 'gardien'"
-            :class="lieuGarde === 'gardien' ? 'border-2 border-[#E8724A]' : 'border-2 border-transparent'"
+            @click="location = 'sitter'"
+            :class="location === 'sitter' ? 'border-2 border-[#E8724A]' : 'border-2 border-transparent'"
             class="bg-white rounded-2xl p-4 flex items-center gap-4 cursor-pointer"
           >
-            <div :class="lieuGarde === 'gardien' ? 'bg-[#E8724A]' : 'bg-gray-200'"
+            <div :class="location === 'sitter' ? 'bg-[#E8724A]' : 'bg-gray-200'"
                  class="w-5 h-5 rounded-full"></div>
             <div>
               <p class="font-bold text-[#2C4A6E]">Chez le gardien</p>
@@ -171,7 +171,7 @@ const envoyerDemande= () => {
 
         <!-- BOUTON SUIVANT -->
         <button
-          @click="etape = 2"
+          @click="step = 2"
           class="w-full bg-[#2C4A6E] text-white font-bold py-4 rounded-full text-xl"
         >
           Suivant
@@ -180,17 +180,17 @@ const envoyerDemande= () => {
       </div>
 
       <!-- PAGE 2 -->
-      <div v-else-if="etape === 2">
+      <div v-else-if="step === 2">
 
         <!-- NIVEAU D'URGENCE -->
         <div class="mb-6">
           <p class="text-[#2C4A6E] font-semibold mb-3">Niveau d'urgence</p>
           <div
-            @click="urgenceSelection = 'normal'"
-            :class="urgenceSelection === 'normal' ? 'border-2 border-[#E8724A]' : 'border-2 border-transparent'"
+            @click="urgencyLevel = 'normal'"
+            :class="urgencyLevel === 'normal' ? 'border-2 border-[#E8724A]' : 'border-2 border-transparent'"
             class="bg-white rounded-2xl p-4 mb-3 flex items-center gap-4 cursor-pointer"
           >
-            <div :class="urgenceSelection === 'normal' ? 'bg-[#E8724A]' : 'bg-gray-200'"
+            <div :class="urgencyLevel === 'normal' ? 'bg-[#E8724A]' : 'bg-gray-200'"
                  class="w-5 h-5 rounded-full"></div>
             <div>
               <p class="font-bold text-[#2C4A6E]">Normal</p>
@@ -198,11 +198,11 @@ const envoyerDemande= () => {
             </div>
           </div>
           <div
-            @click="urgenceSelection = 'urgent'"
-            :class="urgenceSelection === 'urgent' ? 'border-2 border-[#E8724A]' : 'border-2 border-transparent'"
+            @click="urgencyLevel = 'urgent'"
+            :class="urgencyLevel === 'urgent' ? 'border-2 border-[#E8724A]' : 'border-2 border-transparent'"
             class="bg-white rounded-2xl p-4 flex items-center gap-4 cursor-pointer"
           >
-            <div :class="urgenceSelection === 'urgent' ? 'bg-[#E8724A]' : 'bg-gray-200'"
+            <div :class="urgencyLevel === 'urgent' ? 'bg-[#E8724A]' : 'bg-gray-200'"
                  class="w-5 h-5 rounded-full"></div>
             <div>
               <p class="font-bold text-[#2C4A6E]">Urgent</p>
@@ -224,14 +224,14 @@ const envoyerDemande= () => {
         <!-- BOUTONS -->
         <div class="flex gap-3">
           <button
-            @click="etape = 1"
+            @click="step = 1"
             class="w-1/2 border-2 border-[#2C4A6E] text-[#2C4A6E] font-bold py-4 rounded-full text-lg"
           >
             Précédent
           </button>
 
           <button
-            @click="envoyerDemande"
+            @click="submitRequest"
             class="w-1/2 bg-[#2C4A6E] text-white font-bold py-4 rounded-full text-lg"
           >
             Envoyer

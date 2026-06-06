@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import LandingView from "@/views/LandingView.vue";
+import LandingView from '@/views/LandingView.vue'
 import LoginView from '../views/LoginView.vue'
 import HomeView from '../views/HomeView.vue'
 import CalendarView from '../views/CalendarView.vue'
 import ProfilView from '../views/ProfilView.vue'
-import AnimalCardView from '../views/AnimalCardView.vue'
 
 
 const router = createRouter({
@@ -19,7 +18,7 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component : LoginView
+      component: LoginView
     },
     {
       path: '/home',
@@ -33,13 +32,8 @@ const router = createRouter({
     },
     {
       path: '/profil',
-      name: 'profil',
+      name: 'profile',
       component: ProfilView
-    },
-    {
-      path: '/animal/:id',
-      name: 'fiche-animal',
-      component: AnimalCardView
     }
   ]
 })

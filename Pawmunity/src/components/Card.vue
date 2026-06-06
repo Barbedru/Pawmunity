@@ -3,24 +3,24 @@
 import {computed} from "vue";
 
 const props = defineProps({
-  nom: String,
-  famille: String,
+  name: String,
+  family: String,
   description: String,
   date: String,
-  lieu: {
-    type :Boolean,
+  location: {
+    type: Boolean,
     default: false
   },
-  reponses: Number,
+  responses: Number,
   urgent: {
     type: Boolean,
     default: false
   }
 })
 
-const initiales = computed(() => {
-  if (!props.nom) return'?'
-  return props.nom.split(' ').map(n => n[0]).join('')
+const initials = computed(() => {
+  if (!props.name) return '?'
+  return props.name.split(' ').map(n => n[0]).join('')
 })
 
 </script>
@@ -37,11 +37,11 @@ const initiales = computed(() => {
       <div class="flex items-center gap-3">
         <!-- Avatar initiales -->
         <div class="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center font-bold text-white">
-          {{ initiales }}
+          {{ initials }}
         </div>
         <div>
-          <p class="font-bold text-[#2C4A6E]">{{ nom }}</p>
-          <p class="text-sm text-gray-500">{{ famille }}</p>
+          <p class="font-bold text-[#2C4A6E]">{{ name }}</p>
+          <p class="text-sm text-gray-500">{{ family }}</p>
         </div>
       </div>
 
@@ -63,9 +63,9 @@ const initiales = computed(() => {
         <span>{{ date }}</span>
       </div>
       <span class="text-gray-400 text-sm">
-    {{ lieu ?  '🏡 Chez le propriétaire' : '🏠 Chez le gardien' }}
+    {{ location ? '🏡 Chez le propriétaire' : '🏠 Chez le gardien' }}
   </span>
-      <span class="text-[#4CAF50] text-sm font-semibold">{{ reponses }} réponses</span>
+      <span class="text-[#4CAF50] text-sm font-semibold">{{ responses }} réponses</span>
     </div>
 
 

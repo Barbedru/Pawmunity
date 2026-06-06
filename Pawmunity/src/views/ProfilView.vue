@@ -1,15 +1,25 @@
 <script setup>
 
 import { ref } from "vue";
-import { profils } from "../data/profils.js";
+import { profiles } from "../data/profiles.js";
 
 import Banner from '@/components/Banner.vue'
 import ProfilBanner from '@/components/ProfilBanner.vue'
 import MenuBurger from '@/components/MenuBurger.vue'
 import AnimalCard from '@/components/AnimalCard.vue'
-import { animaux } from '@/data/animaux.js'
+import { animals } from '@/data/animals.js'
+import AnimalCardView from '@/components/AnimalCardView.vue'
 
-const profil =ref(profils[0])
+const profile = ref(profiles[0])
+
+const showCard = ref(false)
+const selectedAnimal = ref(null)
+
+const openCard = (id) => {
+  selectedAnimal.value = id
+  showCard.value = true
+}
+
 </script>
 
 <template>
@@ -17,14 +27,14 @@ const profil =ref(profils[0])
     <Banner />
     <MenuBurger />
     <ProfilBanner
-      :famille="profil.famille"
-      :nom="profil.nom"
+      :name="profile.name"
+      :family="profile.family"
     />
 
 
     <div>
       <p class="font-light text-[#2C4A6E] text-[40px] text-center py-10 ">
-        Mes animaux </p>
+        Mes animals </p>
     </div>
 
     <button
@@ -33,15 +43,16 @@ const profil =ref(profils[0])
       + Ajouter
     </button>
 
-    <!--Liste animaux-->
+    <!--Liste animals-->
 
     <AnimalCard
-      v-for="animal in animaux"
+      v-for="animal in animals"
       :key="animal.id"
-      :nom="animal.nom"
+      :name="animal.name"
       :type="animal.type"
       :age="animal.age"
       :emoji="animal.emoji"
+      @view="openCard(animal.id)"
     />
 
     <!--Historique-->
@@ -56,6 +67,9 @@ const profil =ref(profils[0])
       <div>
         <p class="font-light text-black text-[24px] "> Murphy</p>
         <p class="font-light text-black text-[15px] "> Famille Hoareau</p>
+      </div>
+
+      <div>
         <p class="font-light text-black text-[15px] "> 15-20 Février</p>
       </div>
 
@@ -66,9 +80,11 @@ const profil =ref(profils[0])
       <div>
         <p class="font-light text-black text-[24px] "> Odin & Einar </p>
         <p class="font-light text-black text-[15px] "> Famille Miquet </p>
-        <p class="font-light text-black text-[15px] "> 04-11 Avril </p>
       </div>
 
+      <div>
+        <p class="font-light text-black text-[15px] "> 04-11 Avril </p>
+      </div>
     </div>
 
     <div>
@@ -76,6 +92,12 @@ const profil =ref(profils[0])
     </div>
 
   </div>
+
+  <AnimalCardView
+    v-if="showCard"
+    :animalId="selectedAnimal"
+    @close="showCard = false"
+  />
 
 </template>
 

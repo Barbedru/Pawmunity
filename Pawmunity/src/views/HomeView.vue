@@ -5,19 +5,19 @@ import Banner from '../components/Banner.vue'
 import MenuBurger from '../components/MenuBurger.vue'
 import Card from '../components/Card.vue'
 import FormApp from '../components/FormApp.vue'
-import { useDemandesStore } from '../stores/cal_request.js'
+import { useRequestsStore } from '../stores/requests.js'
 
-const store = useDemandesStore()
-const filtreActif = ref('toutes')
+const store = useRequestsStore()
+const activeFilter = ref('all')
 
-const demandesFiltrees = computed(() => {
-  if (filtreActif.value === 'urgentes') {
-    return store.demandes.filter(d => d.urgent === true)
+const filteredRequests = computed(() => {
+  if (activeFilter.value === 'urgent') {
+    return store.requests.filter(r => r.urgent === true)
   }
-  return store.demandes
+  return store.requests
 })
 
-const afficherFormulaire = ref(false)
+const showForm = ref(false)
 
 </script>
 
@@ -31,45 +31,43 @@ const afficherFormulaire = ref(false)
     </p>
 
     <button
-      @click="filtreActif = 'toutes'"
-      :class="filtreActif === 'toutes' ? 'shadow-[0_4px_10px_rgba(44,74,110,0.4)]' : ''"
-      class="w-[280px] mx-auto h-[62px]  bg-[#2C4A6E] text-white font-bold h-15.5 rounded-full mb-4 text-xl"
+      @click="activeFilter = 'all'"
+      :class="activeFilter !== 'all' ? 'shadow-[0_4px_10px_rgba(44,74,110,0.4)]' : ''"
+      class="w-[280px] mx-auto h-[62px] bg-[#2C4A6E] text-white font-bold rounded-full mb-4 text-xl"
     >
-      Toutes les request
+      Toutes les demandes
     </button>
 
     <button
-      @click="filtreActif = 'urgentes'"
-      :class="filtreActif === 'urgentes' ? '' : 'shadow-[0_4px_10px_rgba(44,74,110,0.4)]'"
-      class="w-[280px] mx-auto h-[62px] mx-auto bg-white text-[#2C4A6E] font-bold h-15.5 rounded-full mb-4 text-xl transition-shadow duration-150"
+      @click="activeFilter = 'urgent'"
+      :class="activeFilter !== 'urgent' ? 'shadow-[0_4px_10px_rgba(44,74,110,0.4)]' : ''"
+      class="w-[280px] mx-auto h-[62px] bg-white text-[#2C4A6E] font-bold rounded-full mb-4 text-xl transition-shadow duration-150"
     >
       Urgentes
     </button>
 
     <button
-      @click="afficherFormulaire = true"
-      class="w-[280px] mx-auto h-[62px] mx-auto bg-[#FF7A4D] text-white font-bold h-15.5 rounded-xl mb-4 text-2xl shadow-[0_4px_10px_rgba(44,74,110,0.4)] hover:shadow-[0_6px_16px_rgba(44,74,110,0.5)]
-       active:shadow-none transition-shadow duration-150">
+      @click="showForm = true"
+      class="w-[280px] mx-auto h-[62px] bg-[#FF7A4D] text-white font-bold rounded-xl mb-4 text-2xl shadow-[0_4px_10px_rgba(44,74,110,0.4)] hover:shadow-[0_6px_16px_rgba(44,74,110,0.5)] active:shadow-none transition-shadow duration-150">
       + Nouvelle demande
     </button>
 
     <Card
-      v-for="demande in demandesFiltrees"
-      :key="demande.id"
-      :nom="demande.nom"
-      :famille="demande.famille"
-      :description="demande.description"
-      :date="demande.date"
-      :lieu="demande.lieu"
-      :reponses="demande.reponses"
-      :urgent="demande.urgent"
+      v-for="request in filteredRequests"
+      :key="request.id"
+      :name="request.name"
+      :family="request.family"
+      :description="request.description"
+      :date="request.date"
+      :location="request.location"
+      :responses="request.responses"
+      :urgent="request.urgent"
     />
 
-
   <FormApp
-    v-if="afficherFormulaire"
-    @fermer="afficherFormulaire = false"
-    @ajouterDemande="store.ajouterDemande"
+    v-if="showForm"
+    @close="showForm = false"
+    @addRequest="store.addRequest"
   />
 
   </div>
