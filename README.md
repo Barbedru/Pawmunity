@@ -1,67 +1,101 @@
-🐾 Application Web de garde d’animals communautaire
+# Pawmunity
 
+> Projet en cours de conception — front-end uniquement
 
-🎯 Concept général
+Application mobile-first qui connecte les familles d'une même communauté pour s'entraider dans la garde de leurs animaux.
 
-Application web privée destinée à une communauté de familles vivant ensemble (ex : caserne de gendarmerie), permettant d’organiser simplement et rapidement la garde d’animals entre membres de confiance.
-Elle répond à deux besoins : 
-• anticiper les absences (vacances, week-ends) 
-• gérer les urgences (départ imprévu, contrainte professionnelle)
+---
 
-⚙️ Fonctionnalités principales
+## Concept
 
-👨‍👩‍👧‍👦 1. Comptes par famille 
-• Connexion sécurisée (identifiant / mot de passe) 
-• Chaque compte représente une famille 
-• Accès à toutes les fonctionnalités de la plateforme
+Pawmunity est une plateforme privée destinée à une communauté de familles vivant à proximité (ex : caserne de gendarmerie, résidence, quartier). Elle permet d'organiser simplement et rapidement la garde d'animaux entre membres de confiance, pour deux usages :
 
-🐾 2. Fiches animals Chaque famille peut enregistrer ses animals avec : 
-•Nom 
-•Type (chien, chat, etc.) 
-•Âge •Caractère 
-•Besoins spécifiques (soins, alimentation, comportement) 
-👉 Ces informations facilitent la prise en charge par d’autres familles
+- **Anticipé** — vacances, week-ends, absences planifiées
+- **Urgent** — départ imprévu, contrainte professionnelle de dernière minute
 
-📢 3. Demande de garde Une famille peut créer une demande avec : 
-• Animal concerné 
-• Dates de garde 
-• Niveau d’urgence : 
-•Normal 🟢 
-•Imminent 🟡 
-•Urgent 🔴 
-• Description / consignes 
-👉 La demande est visible par toute la communauté
+---
 
-🙋 4. Réponse aux request 
-• Les autres familles peuvent proposer leur aide 
-• Plusieurs familles peuvent répondre à une même demande 
-👉 Validation finale : 
-• C’est la famille demandeuse qui choisit à qui confier la garde
+## Fonctionnalités
 
+### Implémentées
 
-🔔 5. Système de notifications 
-• Alerte lors d’une nouvelle demande 
-• Mise en avant des request urgentes 
-• Notifications visuelles dans l’application 
-👉 Permet une réactivité rapide, surtout en cas d’urgence
+| Écran | Description |
+|---|---|
+| Landing | Accueil avec connexion / création de compte |
+| Home | Liste des demandes de garde, filtres (toutes / urgentes), ajout d'une demande |
+| Formulaire | Modal 2 étapes — animal, dates, lieu, urgence |
+| Calendrier | Visualisation des gardes planifiées (VCalendar) |
+| Profil | Liste des animaux de la famille + historique des gardes |
+| Fiche animal | Détail complet : alimentation, commandes, accessoires, goûts… |
 
-📊 6. Statut des request Chaque demande possède un statut : 
-• Ouverte (en attente de réponse) 
-• En cours (gardien sélectionné) 
-• Terminée 
-👉 Permet de suivre facilement les gardes
+### Prévues
 
-📅 7. Calendrier partagé 
-•Vue globale des gardes prévues 
-• Visualisation des disponibilités 
-• Meilleure organisation collective
+- Comptes famille avec authentification
+- Réponse aux demandes + validation par la famille demandeuse
+- Statuts de demande (ouverte / en cours / terminée)
+- Notifications visuelles pour les demandes urgentes
+- Calendrier partagé des disponibilités
 
-🆘 8. Mode urgence 
-• Mise en avant des request urgentes 
-• Visibilité prioritaire dans l’interface 
-• Accès rapide (bouton dédié) 
-👉 Idéal pour les situations imprévues
+---
 
-💾 9. Stockage des données (version actuelle) 
-• Données stockées côté front (ex : localStorage ou JSON) 
-• Base de données simulée pour prototype
+## Stack technique
+
+- **Vue 3** (beta — vapor renderer activé) avec Composition API + `<script setup>`
+- **Vite 8** avec `@vitejs/plugin-vue`
+- **Tailwind CSS v4**
+- **Pinia** — gestion d'état
+- **Vue Router 5**
+- **VCalendar** — vue calendrier
+
+> Aucun backend. Toutes les données sont des mocks statiques dans `src/data/`. Rien ne persiste entre les rechargements.
+
+---
+
+## Structure du projet
+
+```
+/
+└── Pawmunity/          ← racine de l'app Vue (tous les scripts se lancent ici)
+    ├── src/
+    │   ├── assets/
+    │   ├── components/
+    │   ├── data/       ← données mock (animaux, demandes, profils)
+    │   ├── stores/     ← stores Pinia
+    │   ├── views/
+    │   └── router/
+    └── package.json
+```
+
+---
+
+## Lancer le projet
+
+**Prérequis :** Node.js `^20.19.0` ou `>=22.12.0`
+
+```bash
+cd Pawmunity
+npm install
+npm run dev
+```
+
+| Commande | Description |
+|---|---|
+| `npm run dev` | Serveur de développement (Vite) |
+| `npm run build` | Build de production |
+| `npm run preview` | Prévisualisation du build |
+| `npm run lint` | Lint avec oxlint + eslint (auto-fix) |
+| `npm run format` | Formatage avec oxfmt |
+
+---
+
+## Design
+
+L'interface est pensée **mobile-first**, avec une charte graphique sobre et chaleureuse.
+
+| Rôle | Couleur |
+|---|---|
+| Bleu primaire | `#2C4A6E` |
+| Orange accent | `#E8724A` / `#FF7A4D` |
+| Fond | `#F5F1EB` |
+
+Les demandes urgentes sont signalées par une bordure gauche orange sur leur carte.
