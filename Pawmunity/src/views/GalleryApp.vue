@@ -1,5 +1,9 @@
 <script setup>
 
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
 </script>
 
 <template>
@@ -13,24 +17,23 @@
       />
     </div>
 
-    <div class="text-4xl text-gray-500 text-center bg-[#FF7A4D]  w-[500px] mx-auto h-[30px] rounded-full px-4 py-1 text-[20px]">
+    <div class="bg-[#FF7A4D] text-white text-[20px] w-[500px] mx-auto rounded-full px-4 py-1 text-center ">
       <p>Une communauté bienveillante pour vos animaux</p>
     </div>
 
-    <div class="text-[#2C4A6E] font-bold text-center text-[60px] ">
+    <div class="text-[#2C4A6E] font-bold text-center text-[60px] mt-8 ">
       <h1>Faites garder vos animaux <br> en toute confiance</h1>
     </div>
 
     <div class="text-center text-gray-500 text-[20px]">
-      <p> Organisez facilement la garde de vos compagnons entre familles de votre communauté.
-        Entraide, simplicité et tranquillité d'esprit.</p>
+      <p> Organisez facilement la garde de vos compagnons entre familles de votre communauté</p>
+      <p>Entraide, simplicité et tranquillité d'esprit</p>
     </div>
 
     <div class="flex justify-center">
       <img
-        src="../assets/qrcode.svg"
+        src="../assets/qrcode.svg" @click="router.push('/login')" class="cursor-pointer w-90 mb-8 items-center justify-center px-6 mt-8 "
         alt="QRcode"
-        class="w-90 mb-8 items-center justify-center px-6"
       />
     </div>
 
