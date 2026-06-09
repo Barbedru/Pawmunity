@@ -27,7 +27,7 @@ const router = useRouter()
       <p class="text-center text-[#2C4A6E] text-base leading-relaxed mb-10">
         Connecte les familles <br>
         de ta communauté pour prendre soin<br>
-        de vos animals ensemble
+        de vos animaux ensemble
       </p>
 
       <!-- Créer un compte -->
