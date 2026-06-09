@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import GalleryApp from '@/views/GalleryApp.vue'
 import LandingView from '@/views/LandingView.vue'
 import LoginView from '../views/LoginView.vue'
 import HomeView from '../views/HomeView.vue'
@@ -11,7 +12,12 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path:'/',
+      name:'GalleryApp',
+      component:GalleryApp
+    },
+    {
+      path: '/landing',
       name: 'landing',
       component: LandingView
     },
