@@ -15,7 +15,7 @@ const initials = computed(() => {
 
 <template>
 
-  <div class="w-full h-[233px] rounded-b-3xl flex items-center px-6 gap-6"
+  <div class="w-full h-[233px] b-3xl flex items-center px-6 gap-6"
        style="background: linear-gradient(180deg, #2C4A6E, #E8724A)">
     <!--Avatar-->
     <div class="w-[109px] h-[111px] rounded-full flex items-center justify-center font-light text-[40px] text-white"
