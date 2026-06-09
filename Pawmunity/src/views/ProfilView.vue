@@ -34,14 +34,16 @@ const openCard = (id) => {
 
     <div>
       <p class="font-light text-[#2C4A6E] text-[40px] text-center py-10 ">
-        Mes animals </p>
+        Mes animaux </p>
     </div>
 
+    <!---
     <button
       @click=""
       class="text-[#FF7A4D] font-bold h-15.5  mb-4 text-2xl drop-shadow-lg active:shadow-none transition-shadow duration-150">
       + Ajouter
     </button>
+    -->
 
     <!--Liste animals-->
 
