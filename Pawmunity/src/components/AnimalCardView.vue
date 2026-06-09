@@ -44,15 +44,18 @@ const sections = {
       <div class="p-6">
 
         <!-- Guide du Petsitter -->
-        <div class="flex items-center justify-between mb-4">
-          <p class="text-[#2C4A6E] font-bold text-xl">Guide du Petsitter</p>
+        <div>
+          <p class="font-light text-[#2C4A6E] text-[40px] text-center py-10 ">
+            Guide du Petsitter </p>
         </div>
 
+        <!--
         <button
           @click=""
           class="text-[#FF7A4D] font-bold h-15.5 mb-4 text-2xl drop-shadow-lg active:shadow-none transition-shadow duration-150">
           Modifier
         </button>
+        -->
 
         <!-- Photo placeholder -->
         <div class="w-full h-[200px] bg-gray-200 rounded-2xl flex items-center justify-center mb-6">
