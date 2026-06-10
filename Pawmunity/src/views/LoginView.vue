@@ -3,6 +3,10 @@ import { useRouter } from 'vue-router'
 import Banner from '../components/Banner.vue'
 import {ref} from "vue";
 import { users } from '../data/users.js'
+import {
+  __esModule as VITE_USER_PSW,
+  __esModule as VITE_USER_EMAIL
+} from "vue-router/unplugin/vite.cjs";
 
 const router = useRouter()
 
@@ -11,7 +15,7 @@ const password = ref('')
 const errorMessage = ref('')
 
 function handleLogin() {
-  const found = users.find(u => u.email === email.value && u.psw === password.value)
+  const found = users.find(u => u.email === VITE_USER_EMAIL.value && u.psw === VITE_USER_PSW.value)
 if (found) {
   router.push('/home')
 } else {
