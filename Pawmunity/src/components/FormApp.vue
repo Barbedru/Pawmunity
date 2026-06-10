@@ -16,9 +16,12 @@ const toggleAnimal = (id) => {
 
 const startDate = ref(null)
 const endDate = ref(null)
+
 const location = ref('owner')
 
 const step = ref(1)
+
+const errors = ref({})
 
 const urgencyLevel = ref('normal')
 const description = ref('')
@@ -29,7 +32,26 @@ const formatDate = (dateStr) => {
   return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })
 }
 
+const validateStep1 = () => {
+  errors.value = {}
+  if (selectedAnimals.value.length === 0) errors.value.animals = 'Sélectionne au moins un animal'
+  if (!startDate.value) errors.value.startDate = 'La date de début est obligatoire'
+  return Object.keys(errors.value).length === 0
+}
+
+const validateStep2 = () => {
+  errors.value = {}
+  if (!description.value || description.value.trim().length < 10)
+    errors.value.description = 'La description doit faire au moins 10 caractères'
+  return Object.keys(errors.value).length === 0
+}
+
+const goToStep2 = () => {
+  if (validateStep1()) step.value = 2
+}
+
 const submitRequest = () => {
+  if (!validateStep2()) return
   const names = selectedAnimals.value
     .map(id => animals.find(a => a.id === id)?.name)
     .join(' & ')
@@ -96,6 +118,7 @@ const submitRequest = () => {
         <!-- ANIMAL CONCERNÉ -->
         <div class="mb-6">
           <p class="text-[#2C4A6E] font-semibold mb-3">Animal concerné</p>
+          <p v-if="errors.animals" class="text-red-500 text-xs mb-2">{{ errors.animals }}</p>
           <div
             v-for="animal in animals"
             :key="animal.id"
@@ -118,6 +141,7 @@ const submitRequest = () => {
           <p class="text-[#2C4A6E] font-semibold mb-3">Période de garde</p>
           <div class="mb-3">
             <p class="text-gray-400 text-sm mb-1">Date de début</p>
+            <p v-if="errors.startDate" class="text-red-500 text-xs mb-1">{{ errors.startDate }}</p>
             <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
               <span class="text-gray-300">📅</span>
               <input
@@ -171,7 +195,7 @@ const submitRequest = () => {
 
         <!-- BOUTON SUIVANT -->
         <button
-          @click="step = 2"
+          @click="goToStep2"
           class="w-full bg-[#2C4A6E] text-white font-bold py-4 rounded-full text-xl"
         >
           Suivant
@@ -217,8 +241,10 @@ const submitRequest = () => {
           <textarea
             v-model="description"
             placeholder="Décrivez brièvement la situation et vos besoins..."
+            :class="errors.description ? 'border border-red-400' : ''"
             class="w-full bg-white rounded-2xl p-4 text-gray-400 outline-none resize-none h-32"
           ></textarea>
+          <p v-if="errors.description" class="text-red-500 text-xs mt-1">{{ errors.description }}</p>
         </div>
 
         <!-- BOUTONS -->
