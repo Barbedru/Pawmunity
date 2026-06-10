@@ -30,7 +30,7 @@ const sections = {
     <div class="bg-[#F5F1EB] w-full rounded-t-3xl max-h-[90vh] overflow-y-auto">
 
       <!-- HEADER -->
-      <div class="w-full h-[150px] flex items-center px-6 gap-6 rounded-t-3xl"
+      <div class="w-full h-[150px] flex items-center justify-center px-6 gap-6 rounded-t-3xl"
            style="background: linear-gradient(180deg, #2C4A6E, #E8724A)">
         <button @click="emit('close')" class="absolute top-4 right-4 text-white text-2xl">✕</button>
         <div class="w-16 h-16 rounded-full flex items-center justify-center font-bold text-white text-xl"
@@ -58,12 +58,12 @@ const sections = {
         -->
 
         <!-- Photo placeholder -->
-        <div class="w-full h-[200px] bg-gray-200 rounded-2xl flex items-center justify-center mb-6">
+        <div class="w-full h-[200px] bg-gray-200 rounded-2xl flex items-center justify-center mb-6 max-w-[500px] mx-auto">
           <p class="text-gray-400">PHOTO</p>
         </div>
 
         <!-- Prénom / Surnom -->
-        <div class="bg-white rounded-2xl p-4 mb-4">
+        <div class="bg-white rounded-2xl p-4 mb-4 max-w-[500px] mx-auto">
           <p class="text-gray-500 text-sm mb-2">
             <span class="font-semibold">Prénom :</span> {{ animal.name }}
           </p>
@@ -73,7 +73,7 @@ const sections = {
         </div>
 
         <!-- Sections -->
-        <div v-for="(items, title) in sections" :key="title" class="bg-white rounded-2xl p-4 mb-4">
+        <div v-for="(items, title) in sections" :key="title" class="bg-white rounded-2xl p-4 mb-4 max-w-[500px] mx-auto">
           <p class="text-[#2C4A6E] font-bold text-center mb-2">{{ title }}</p>
           <ul v-if="items" class="text-gray-500 text-sm list-disc list-inside">
             <li v-for="item in items" :key="item">{{ item }}</li>
