@@ -1,8 +1,8 @@
 export const users = [
 
   {
-  email: "famille.druval@mail.fr",
-  psw: "Pawmunity"
+  email: import.meta.env.VITE_USER_EMAIL,
+  psw: import.meta.env.VITE_USER_PSW
   }
 
 ]
