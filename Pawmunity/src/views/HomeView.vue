@@ -5,16 +5,17 @@ import Banner from '../components/Banner.vue'
 import MenuBurger from '../components/MenuBurger.vue'
 import Card from '../components/Card.vue'
 import FormApp from '../components/FormApp.vue'
-import { useRequestsStore } from '../stores/requests.js'
 
-const store = useRequestsStore()
+const props = defineProps(['requests'])
+const emit = defineEmits(['addRequest'])
+
 const activeFilter = ref('all')
 
 const filteredRequests = computed(() => {
   if (activeFilter.value === 'urgent') {
-    return store.requests.filter(r => r.urgent === true)
+    return props.requests.filter(r => r.urgent === true)
   }
-  return store.requests
+  return props.requests
 })
 
 const showForm = ref(false)
@@ -67,7 +68,7 @@ const showForm = ref(false)
   <FormApp
     v-if="showForm"
     @close="showForm = false"
-    @addRequest="store.addRequest"
+    @addRequest="(r) => emit('addRequest', r)"
   />
 
   </div>

@@ -3,12 +3,11 @@
 import Banner from "../components/Banner.vue";
 import MenuBurger from "@/components/MenuBurger.vue";
 import { computed } from 'vue'
-import { useRequestsStore } from '../stores/requests.js'
 
-const store = useRequestsStore()
+const props = defineProps(['requests'])
 
 const stays = computed(() =>
-  store.requests
+  props.requests
     .filter(r => r.startDate)
     .map(r => ({
       key: `stay-${r.id}`,
