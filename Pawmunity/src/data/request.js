@@ -39,7 +39,7 @@ export const request = [
     id: 4,
     name: "Leito & Arizona",
     family: "Famille Pastori",
-    description: "J'ai besoin qu'on s'occupe de Zouk pour 2 jours",
+    description: "Nous avons besoin d'une garde pour nos deux chiens pour 2 jours",
     date: "5-6 Août",
     startDate: "2026-08-05",
     endDate: "2026-08-06",
