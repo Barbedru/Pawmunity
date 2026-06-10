@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import GalleryApp from '@/views/GalleryApp.vue'
+import ShowcaseApp from '../views/ShowcaseApp.vue'
 import LandingView from '@/views/LandingView.vue'
 import LoginView from '../views/LoginView.vue'
 import HomeView from '../views/HomeView.vue'
@@ -13,8 +13,8 @@ const router = createRouter({
   routes: [
     {
       path:'/',
-      name:'GalleryApp',
-      component:GalleryApp
+      name:'ShowcaseApp',
+      component:ShowcaseApp
     },
     {
       path: '/landing',
