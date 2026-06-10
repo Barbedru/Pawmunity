@@ -27,7 +27,6 @@ const router = useRouter();
 
     <div class="text-center text-gray-500 text-[20px]">
       <p> Organisez facilement la garde de vos compagnons entre familles de votre communauté</p>
-      <p>Entraide, simplicité et tranquillité d'esprit</p>
     </div>
 
     <div class="flex justify-center">
