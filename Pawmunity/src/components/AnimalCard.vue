@@ -1,4 +1,11 @@
 <script setup>
+/**
+ * AnimalCard.vue — Ligne de liste pour un animal
+ *
+ * Affiche une carte compacte avec l'emoji, le nom et l'âge de l'animal.
+ * Le bouton "Voir la fiche" émet l'événement 'view' vers le parent (ProfilView)
+ * pour ouvrir la fiche détaillée (AnimalCardView).
+ */
 
 defineProps({
   name: String,
@@ -7,13 +14,14 @@ defineProps({
   emoji: String
 })
 
+// Émet 'view' quand l'utilisateur clique sur "Voir la fiche"
 const emit = defineEmits(['view'])
 
 </script>
 
 <template>
 
-  <div class="w-[346px] mx-auto h-[112px] bg-white rounded-2xl p-4 mb-4 flex items-center justify-between">
+  <div class="w-[346px] sm:w-[440px] md:w-[500px] mx-auto h-[112px] bg-white rounded-2xl p-4 mb-4 flex items-center justify-between">
 
     <!-- Emoji + Nom + Age -->
     <div class="flex items-center gap-4">

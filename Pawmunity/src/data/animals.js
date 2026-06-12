@@ -1,3 +1,29 @@
+/**
+ * animals.js — Données statiques des animaux de la famille
+ *
+ * Tableau exporté utilisé par :
+ *   - ProfilView    : pour afficher la liste des animaux
+ *   - AnimalCardView: pour afficher la fiche détaillée d'un animal
+ *   - FormApp       : pour proposer la sélection d'un animal lors d'une demande de garde
+ *
+ * Structure d'un animal :
+ *   - id         : identifiant unique (number)
+ *   - name       : prénom de l'animal
+ *   - type       : espèce ("Chien", "Chat"…)
+ *   - age        : âge en années
+ *   - emoji      : emoji représentatif
+ *   - nickname   : surnom(s) (optionnel)
+ *   - meals      : instructions de repas (optionnel)
+ *   - treats     : informations sur les friandises (optionnel)
+ *   - commands   : commandes connues par l'animal (optionnel)
+ *   - play       : activités de jeu (optionnel)
+ *   - belongings : affaires à emporter lors d'une garde (optionnel)
+ *   - likes      : ce que l'animal aime (optionnel)
+ *   - dislikes   : ce que l'animal n'aime pas (optionnel)
+ *
+ * Les champs optionnels sont absents des entrées minimales (ex: Odin, Einar).
+ */
+
 export const animals = [
   {
     id: 1,

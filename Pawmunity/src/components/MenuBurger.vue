@@ -1,11 +1,21 @@
 <script setup>
+/**
+ * MenuBurger.vue — Menu de navigation hamburger
+ *
+ * Bouton fixé en haut à droite de l'écran (icône 3 traits).
+ * Au clic, ouvre un panneau flottant avec 3 liens : Accueil, Calendrier, Profil.
+ * Un overlay transparent derrière le panneau permet de le fermer en cliquant à côté.
+ */
 
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+
+// Contrôle l'ouverture/fermeture du panneau de navigation
 const isOpen = ref(false)
 
+// Ferme le menu puis navigue vers le chemin donné
 const navigate = (path) => {
   isOpen.value = false
   router.push(path)

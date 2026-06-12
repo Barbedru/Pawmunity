@@ -1,3 +1,24 @@
+/**
+ * request.js — Données statiques des demandes de garde initiales
+ *
+ * Tableau exporté utilisé par App.vue comme données de départ.
+ * App.vue le charge dans un ref() et le passe en prop à HomeView et CalendarView.
+ * Les nouvelles demandes créées via FormApp sont ajoutées dans ce même ref (en mémoire).
+ * Les données ne persistent pas entre les rechargements de page.
+ *
+ * Structure d'une demande :
+ *   - id         : identifiant unique (number)
+ *   - name       : nom de l'animal concerné
+ *   - family     : nom de la famille qui fait la demande
+ *   - description: texte libre décrivant la situation
+ *   - date       : période affichée en string lisible (ex: "29-30 Juin")
+ *   - startDate  : date de début au format ISO YYYY-MM-DD (utilisée par le calendrier)
+ *   - endDate    : date de fin au format ISO YYYY-MM-DD (utilisée par le calendrier)
+ *   - location   : true = garde chez le propriétaire | false = garde chez le gardien
+ *   - responses  : nombre de réponses reçues
+ *   - urgent     : true = demande urgente (badge orange + bordure dans Card)
+ */
+
 export const request = [
   {
     id: 1,
