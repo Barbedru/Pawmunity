@@ -1,4 +1,17 @@
 <script setup>
+/**
+ * ProfilView.vue — Page Profil de la famille
+ *
+ * Affiche trois sections :
+ *   1. ProfilBanner    : en-tête avec le nom de la famille et un avatar
+ *   2. Mes animaux     : liste des animaux (AnimalCard) avec accès à leur fiche détaillée
+ *   3. Historique des gardes : liste statique des gardes passées (données en dur)
+ *
+ * Quand l'utilisateur clique sur "Voir la fiche" d'un animal :
+ *   → openCard() mémorise l'id de l'animal et affiche AnimalCardView en modal.
+ *
+ * Le profil affiché est toujours profiles[0] (pas de gestion multi-profils pour l'instant).
+ */
 
 import { ref } from "vue";
 import { profiles } from "../data/profiles.js";
@@ -10,11 +23,14 @@ import AnimalCard from '@/components/AnimalCard.vue'
 import { animals } from '@/data/animals.js'
 import AnimalCardView from '@/components/AnimalCardView.vue'
 
+// Profil actif (toujours le premier de la liste)
 const profile = ref(profiles[0])
 
+// Contrôle l'affichage de la fiche détaillée d'un animal
 const showCard = ref(false)
 const selectedAnimal = ref(null)
 
+// Mémorise l'animal sélectionné et ouvre sa fiche
 const openCard = (id) => {
   selectedAnimal.value = id
   showCard.value = true
@@ -64,7 +80,7 @@ const openCard = (id) => {
         Historique des Gardes </p>
     </div>
 
-    <div class="w-[346px] mx-auto h-[112px] bg-white rounded-2xl p-4 mb-4 flex items-center justify-between">
+    <div class="w-[346px] sm:w-[440px] md:w-[500px] mx-auto h-[112px] bg-white rounded-2xl p-4 mb-4 flex items-center justify-between">
 
       <div>
         <p class="font-light text-black text-[24px] "> Murphy</p>
@@ -77,7 +93,7 @@ const openCard = (id) => {
 
     </div>
 
-    <div class="w-[346px] mx-auto h-[112px] bg-white rounded-2xl p-4 mb-4 flex items-center justify-between">
+    <div class="w-[346px] sm:w-[440px] md:w-[500px] mx-auto h-[112px] bg-white rounded-2xl p-4 mb-4 flex items-center justify-between">
 
       <div>
         <p class="font-light text-black text-[24px] "> Odin & Einar </p>

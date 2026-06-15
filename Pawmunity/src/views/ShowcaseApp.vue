@@ -1,4 +1,16 @@
 <script setup>
+/**
+ * ShowcaseApp.vue — Page vitrine (point d'entrée sur desktop)
+ *
+ * Page de présentation de l'application, pensée pour un affichage grand écran.
+ * Composée de 3 colonnes :
+ *   - Gauche  : maquette téléphone affichant la vue Accueil (capture1.png)
+ *   - Centre  : slogan, titre principal, description, et QR code cliquable
+ *   - Droite  : maquette téléphone affichant le formulaire (capture2.png)
+ *
+ * Le QR code redirige vers /login pour accéder à l'application.
+ * Les téléphones sont construits en CSS pur (phone-frame, phone-notch, phone-screen).
+ */
 
 import { useRouter } from "vue-router";
 

@@ -1,4 +1,10 @@
 <script setup>
+/**
+ * Card.vue — Carte d'une demande de garde
+ *
+ * Affiche les informations d'une demande : nom de l'animal, famille, description,
+ * période de garde, lieu (chez le propriétaire ou chez le gardien) et nombre de réponses.
+ */
 
 import {computed} from "vue";
 
@@ -18,6 +24,7 @@ const props = defineProps({
   }
 })
 
+// Calcule les initiales à partir du nom (ex: "Murphy Odin" → "MO")
 const initials = computed(() => {
   if (!props.name) return '?'
   return props.name.split(' ').map(n => n[0]).join('')
@@ -28,7 +35,7 @@ const initials = computed(() => {
 <template>
 
   <div :class="urgent ? 'border-l-4 border-[#E8724A]' : ''"
-       class="w-[90%] mx-auto bg-white rounded-2xl p-4 mb-4">
+       class="w-[90%] md:max-w-[600px] mx-auto bg-white rounded-2xl p-4 mb-4">
 
 
     <div class="flex items-center justify-between mb-4">
@@ -54,7 +61,7 @@ const initials = computed(() => {
     </div>
 
     <!-- DESCRIPTION -->
-    <p class="text-gray-500 text-sm mb-4">{{ description }}</p>
+    <p class="text-gray-500 text-sm sm:text-base mb-4">{{ description }}</p>
 
     <!-- PIED DE CARTE -->
     <div class="flex items-center justify-between">

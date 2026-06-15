@@ -1,11 +1,32 @@
 <script setup>
+/**
+ * FormApp.vue — Formulaire de création d'une demande de garde (modal 2 étapes)
+ *
+ * S'affiche en glissant depuis le bas de l'écran (bottom sheet).
+ * Cliquer sur l'overlay sombre ou le ✕ ferme le formulaire via l'emit 'close'.
+ *
+ * Étape 1 — Animal & Dates :
+ *   - Sélection d'un ou plusieurs animaux (liste issue de animals.js)
+ *   - Dates de début et fin de garde
+ *   - Lieu : chez le propriétaire ou chez le gardien
+ *
+ * Étape 2 — Détails :
+ *   - Niveau d'urgence (normal / urgent)
+ *   - Description libre (min. 10 caractères)
+ *
+ * À la soumission, émet 'addRequest' avec un objet demande prêt à l'emploi,
+ * puis 'close' pour fermer le formulaire.
+ */
+
 import { ref } from 'vue'
 import { animals } from '../data/animals.js'
 
 const emit = defineEmits(['close', 'addRequest'])
 
+// Tableau des ids d'animaux sélectionnés (multi-sélection possible)
 const selectedAnimals = ref([])
 
+// Ajoute ou retire un animal de la sélection selon son état actuel
 const toggleAnimal = (id) => {
   if (selectedAnimals.value.includes(id)) {
     selectedAnimals.value = selectedAnimals.value.filter(a => a !== id)
@@ -17,21 +38,26 @@ const toggleAnimal = (id) => {
 const startDate = ref(null)
 const endDate = ref(null)
 
+// 'owner' = chez le propriétaire | 'sitter' = chez le gardien
 const location = ref('owner')
 
+// Numéro de l'étape active (1 ou 2)
 const step = ref(1)
 
+// Objet regroupant les messages d'erreur de validation (clé = champ concerné)
 const errors = ref({})
 
 const urgencyLevel = ref('normal')
 const description = ref('')
 
+// Formate une date ISO (YYYY-MM-DD) en libellé français (ex: "29 juin")
 const formatDate = (dateStr) => {
   if (!dateStr) return ''
   const date = new Date(dateStr)
   return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })
 }
 
+// Valide l'étape 1 : au moins un animal sélectionné et une date de début saisie
 const validateStep1 = () => {
   errors.value = {}
   if (selectedAnimals.value.length === 0) errors.value.animals = 'Sélectionne au moins un animal'
@@ -39,6 +65,7 @@ const validateStep1 = () => {
   return Object.keys(errors.value).length === 0
 }
 
+// Valide l'étape 2 : description d'au moins 10 caractères
 const validateStep2 = () => {
   errors.value = {}
   if (!description.value || description.value.trim().length < 10)
@@ -46,25 +73,29 @@ const validateStep2 = () => {
   return Object.keys(errors.value).length === 0
 }
 
+// Passe à l'étape 2 seulement si l'étape 1 est valide
 const goToStep2 = () => {
   if (validateStep1()) step.value = 2
 }
 
+// Construit l'objet demande et l'émet vers le parent (HomeView)
 const submitRequest = () => {
   if (!validateStep2()) return
+
+  // Concatène les noms des animaux sélectionnés (ex: "Murphy & Odin")
   const names = selectedAnimals.value
     .map(id => animals.find(a => a.id === id)?.name)
     .join(' & ')
 
   const newRequest = {
-    id: Date.now(),
+    id: Date.now(),           // id unique basé sur le timestamp
     name: names,
     family: "Famille Druval",
     description: description.value,
     date: `${formatDate(startDate.value)} - ${formatDate(endDate.value)}`,
     startDate: startDate.value,
-    endDate: endDate.value || startDate.value,
-    location: location.value === 'owner',
+    endDate: endDate.value || startDate.value, // si pas de fin, même jour que le début
+    location: location.value === 'owner',      // true = chez le propriétaire
     responses: 0,
     urgent: urgencyLevel.value === 'urgent'
   }
@@ -80,10 +111,10 @@ const submitRequest = () => {
 
 <template>
 
-  <div class="fixed inset-0 bg-black/50 flex items-end justify-center z-50"
+  <div class="fixed inset-0 bg-black/50 flex items-end sm:items-center justify-center z-50"
        @click.self="emit('close')">
 
-    <div class="bg-[#F5F1EB] w-full rounded-t-3xl p-6 max-h-[90vh] overflow-y-auto">
+    <div class="bg-[#F5F1EB] w-full sm:max-w-[600px] sm:rounded-3xl rounded-t-3xl p-6 max-h-[90vh] overflow-y-auto">
 
       <!-- HEADER commun -->
       <div class="flex items-center justify-between mb-6">

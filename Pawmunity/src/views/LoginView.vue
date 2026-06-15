@@ -1,4 +1,19 @@
 <script setup>
+/**
+ * LoginView.vue — Formulaire de connexion
+ *
+ * Permet à l'utilisateur de se connecter avec son email et son mot de passe.
+ * Les identifiants sont comparés à la liste statique définie dans data/users.js,
+ * qui lit ses valeurs depuis les variables d'environnement (.env).
+ *
+ * Validation :
+ *   - Email : champ obligatoire + format valide (regex)
+ *   - Mot de passe : champ obligatoire
+ *
+ * Si les identifiants sont corrects → redirection vers /home.
+ * Sinon → affichage d'un message d'erreur général.
+ */
+
 import { useRouter } from 'vue-router'
 import Banner from '../components/Banner.vue'
 import {ref} from "vue";
@@ -7,11 +22,13 @@ const router = useRouter()
 
 const email = ref('')
 const password = ref('')
-const errorMessage = ref('')
-const errors = ref({})
+const errorMessage = ref('')  // message d'erreur affiché sous le formulaire
+const errors = ref({})        // erreurs par champ (email / password)
 
+// Expression régulière de validation du format email
 const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+// Valide les deux champs avant soumission, remplit errors si invalide
 function validate() {
   errors.value = {}
   if (!email.value) errors.value.email = "L'email est obligatoire"
@@ -20,6 +37,7 @@ function validate() {
   return Object.keys(errors.value).length === 0
 }
 
+// Vérifie les identifiants et redirige ou affiche une erreur
 function handleLogin() {
   errorMessage.value = ''
   if (!validate()) return
@@ -38,20 +56,20 @@ function handleLogin() {
 
     <Banner />
 
-    <div class="flex-1 flex flex-col items-center justify-center px-6">
+    <div class="flex-1 flex flex-col items-center justify-center px-6 sm:px-12 md:px-24">
 
 
       <img
         src="../assets/LogoApp.png"
         alt="Illustration Pawmunity"
-        class="w-90 mb-8"
+        class="w-90 sm:w-[420px] mb-8"
       />
 
 
       <div class="w-full flex flex-col gap-4">
 
         <!-- Email -->
-        <div class="w-[280px] mx-auto flex flex-col gap-1">
+        <div class="w-[280px] sm:w-[360px] md:w-[400px] mx-auto flex flex-col gap-1">
           <label class="text-[#2C4A6E] font-semibold text-sm">Email</label>
           <input
             v-model="email"
@@ -62,7 +80,7 @@ function handleLogin() {
         </div>
 
         <!-- Mot de passe -->
-        <div class="w-[280px] mx-auto flex flex-col gap-1">
+        <div class="w-[280px] sm:w-[360px] md:w-[400px] mx-auto flex flex-col gap-1">
           <label class="text-[#2C4A6E] font-semibold text-sm">Mot de passe</label>
           <input
             v-model="password"
@@ -74,7 +92,7 @@ function handleLogin() {
 
         <p
           v-if="errorMessage"
-          class="w-[280px] mx-auto text-red-500 text-sm text-center"
+          class="w-[280px] sm:w-[360px] md:w-[400px] mx-auto text-red-500 text-sm text-center"
         >
           {{ errorMessage }}
         </p>
@@ -82,7 +100,7 @@ function handleLogin() {
         <!-- Connexion -->
         <button
           @click="handleLogin('/home')"
-          class="w-[280px] mx-auto h-[62px] bg-white border-2 border-[#2C4A6E] text-black font-bold rounded-full text-xl mt-4
+          class="w-[280px] sm:w-[360px] md:w-[400px] mx-auto h-[62px] bg-white border-2 border-[#2C4A6E] text-black font-bold rounded-full text-xl mt-4
                  shadow-[0_4px_10px_rgba(0,0,0,0.25)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.3)]
                  active:shadow-none transition-shadow duration-150"
         >

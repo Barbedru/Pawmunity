@@ -1,4 +1,19 @@
 <script setup>
+/**
+ * AnimalCardView.vue — Fiche détaillée d'un animal (modal depuis le bas)
+ *
+ * S'affiche en overlay quand l'utilisateur clique sur "Voir la fiche" dans ProfilView.
+ * Reçoit l'id de l'animal, cherche ses données dans animals.js et les affiche
+ * sous forme de "Guide du Petsitter" : infos générales + sections thématiques.
+ *
+ * Sections affichées (si renseignées dans animals.js) :
+ *   Les Repas / Les Friandises / Pour Jouer / Mes affaires / J'aime / Je n'aime pas
+ *
+ * Props :
+ *   - animalId : id numérique de l'animal à afficher
+ *
+ * Émet 'close' pour fermer la fiche (clic sur ✕ ou sur l'overlay).
+ */
 
 import { animals } from '../data/animals.js'
 import { ref } from 'vue'
@@ -8,7 +23,11 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['close'])
+
+// Retrouve l'animal correspondant à l'id reçu en prop
 const animal = ref(animals.find(a => a.id === props.animalId))
+
+// Dictionnaire des sections à afficher : titre → tableau d'items depuis les données de l'animal
 const sections = {
   'Les Repas': animal.value?.meals,
   'Les Friandises': animal.value?.treats,

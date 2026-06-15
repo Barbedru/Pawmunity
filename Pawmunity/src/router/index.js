@@ -1,3 +1,18 @@
+/**
+ * router/index.js — Configuration des routes de l'application
+ *
+ * Utilise createWebHistory (URLs sans #).
+ * Toutes les routes sont publiques (pas de garde d'authentification).
+ *
+ * Table des routes :
+ *   /           → ShowcaseApp  : page vitrine desktop (logo + maquettes téléphone + QR code)
+ *   /landing    → LandingView  : page d'accueil mobile (boutons "Créer un compte" / "Connexion")
+ *   /login      → LoginView    : formulaire de connexion (email + mot de passe)
+ *   /home       → HomeView     : liste des demandes de garde avec filtres et formulaire
+ *   /calendar   → CalendarView : calendrier VCalendar affichant les périodes de garde
+ *   /profil     → ProfilView   : profil de la famille, liste des animaux et historique des gardes
+ */
+
 import { createRouter, createWebHistory } from 'vue-router'
 
 import ShowcaseApp from '../views/ShowcaseApp.vue'
